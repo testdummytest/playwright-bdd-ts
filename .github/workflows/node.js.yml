@@ -24,6 +24,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: npm install --no-fund --no-audit
+        working-directory: playwright-bdd-ts/playwright-automation
 
       - name: 🎭 Install Playwright Browsers
         run: npx playwright install --with-deps
