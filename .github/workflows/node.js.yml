@@ -32,6 +32,7 @@ jobs:
         run: npx playwright install --with-deps
         working-directory: playwright-automation
 
-      - name: 🛠 Run Tests with Cucumber & Playwright
-        run: npm run test || echo "Tests failed, capturing artifacts..."
+      - name: 🛠 Run Smoke Tests with Cucumber & Playwright
+        run: npm run test:smoke || echo "Tests failed, capturing artifacts..."
         working-directory: playwright-automation
+
