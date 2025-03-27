@@ -16,29 +16,24 @@ jobs:
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensure all files are checked out
 
       - name: 🔧 Set Up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'
+          cache-dependency-path: playwright-bdd-ts/playwright-automation/package-lock.json # Ensure caching works
 
       - name: 📦 Install Dependencies
         run: npm install --no-fund --no-audit
-        working-directory: playwright-automation
+        working-directory: playwright-bdd-ts/playwright-automation
 
       - name: 🎭 Install Playwright Browsers
         run: npx playwright install --with-deps
+        working-directory: playwright-bdd-ts/playwright-automation
 
       - name: 🛠 Run Tests with Cucumber & Playwright
         run: npm run test || echo "Tests failed, capturing artifacts..."
-
-      - name: 📜 Upload Test Results (Artifacts)
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results
-          path: |
-            test-results/
-            playwright-report/
-            screenshots/
-          retention-days: 7
+        working-directory: playwright-bdd-ts/playwright-automation
