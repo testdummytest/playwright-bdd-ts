@@ -24,7 +24,7 @@ jobs:
           cache: 'npm'
 
       - name: 📦 Install Dependencies
-        run: npm install
+        run: npm install --no-fund --no-audit
 
       - name: 🎭 Install Playwright Browsers
         run: npx playwright install --with-deps
