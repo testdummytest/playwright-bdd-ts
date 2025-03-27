@@ -36,3 +36,22 @@ jobs:
         run: npm run test:smoke || echo "Tests failed, capturing artifacts..."
         working-directory: playwright-automation
 
+      - name: ⏳ Wait for Test Reports to Generate
+        run: sleep 10  # Ensures reports have time to finalize
+        working-directory: playwright-automation
+
+      - name: 📧 Send Test Report via Email (HTML Table)
+        run: node -e '
+          const fs = require("fs");
+          const { sendEmail } = require("./utils/emailSender");
+      
+          // 📌 Load the generated HTML Table from hooks.js
+          const HTML_REPORT_PATH = "./playwright-test-summary.html";
+          const htmlBody = fs.existsSync(HTML_REPORT_PATH) 
+            ? fs.readFileSync(HTML_REPORT_PATH, "utf8") 
+            : "<p>No test report available.</p>";
+      
+          sendEmail("📧 Playwright Test Report", htmlBody);
+        '
+        working-directory: playwright-automation
+
