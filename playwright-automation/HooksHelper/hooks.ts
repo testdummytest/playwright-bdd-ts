@@ -13,7 +13,7 @@ let testFail = 0;
 
 BeforeAll(async () => {
   console.log("Launching browser before tests...");
-  browser = await chromium.launch({ headless: false });
+  browser = await chromium.launch({ headless: true });
 });
 
 AfterAll(async () => {
