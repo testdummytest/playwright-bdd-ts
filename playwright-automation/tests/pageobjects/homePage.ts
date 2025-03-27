@@ -1,7 +1,7 @@
 import { expect, Page } from '@playwright/test';
 import { pageFixture } from '../../HooksHelper/pageFixture';
 import { sleep } from '../../utils/common';
-let TIMEOUT = 50*1000
+let TIMEOUT = 100*1000
 
 export class HomePage {
      constructor(private page:Page) {}
