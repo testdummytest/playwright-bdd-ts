@@ -32,8 +32,11 @@ jobs:
         run: npx playwright install --with-deps
         working-directory: playwright-automation
 
-      - name: Check TestData JSON
-        run: ls -R
+      # ✅ Debugging step: Check if testData.json exists
+      - name: 📝 Debug TestData.json Path
+        run: |
+          echo "Current Working Directory: $(pwd)"
+          ls -R playwright-automation/TestData || echo "⚠️ testData.json NOT FOUND!"
         working-directory: playwright-automation
 
       - name: 🛠 Run Smoke Tests with Cucumber & Playwright
@@ -41,7 +44,7 @@ jobs:
           mkdir -p playwright-automation/test-results  # Ensure directory exists
           npm run test:smoke || echo "❌ Tests failed, checking for artifacts..."
         working-directory: playwright-automation
-      
+
       - name: 🔍 Check if Screenshots Exist
         run: |
           if ls playwright-automation/test-results/*.png 1> /dev/null 2>&1; then
@@ -57,4 +60,3 @@ jobs:
           name: playwright-artifacts
           path: playwright-automation/test-results/
           if-no-files-found: ignore  # Prevents failure if no files exist
-
