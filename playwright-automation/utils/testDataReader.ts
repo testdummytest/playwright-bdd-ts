@@ -1,18 +1,15 @@
 import * as fs from "fs";
 import * as path from "path";
 
-// Determine the correct test data path
-const TEST_DATA_PATHS = [
-    path.resolve(__dirname, "../TestData/testData.json"),  // Local execution
-    path.resolve(process.cwd(), "playwright-automation/TestData/testData.json")  // GitHub Actions
-];
+// Dynamically resolve path based on environment
+const TEST_DATA_DIR = fs.existsSync(path.resolve(process.cwd(), "TestData"))
+    ? path.resolve(process.cwd(), "TestData")
+    : path.resolve(process.cwd(), "playwright-automation/TestData");
 
-// Find the correct test data file path
-const TEST_DATA_PATH = TEST_DATA_PATHS.find(fs.existsSync) || TEST_DATA_PATHS[1];
+const TEST_DATA_PATH = path.join(TEST_DATA_DIR, "testData.json");
 
 console.log(`📂 Looking for test data at: ${TEST_DATA_PATH}`);
 
-// Function to fetch test data
 export function getTestDataValue(key: string): string {
     if (!fs.existsSync(TEST_DATA_PATH)) {
         console.error(`❌ Test data file NOT found at ${TEST_DATA_PATH}`);
