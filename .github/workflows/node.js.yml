@@ -39,6 +39,12 @@ jobs:
           ls -R playwright-automation/TestData || echo "⚠️ testData.json NOT FOUND!"
         working-directory: playwright-automation
 
+      - name: 🔍 Check if testData.json is ignored
+        run: |
+          git check-ignore -v playwright-automation/TestData/testData.json || echo "✅ testData.json is NOT ignored!"
+          ls -R playwright-automation/TestData || echo "⚠️ testData.json NOT FOUND!"
+        working-directory: playwright-automation
+
       - name: 🛠 Run Smoke Tests with Cucumber & Playwright
         run: |
           mkdir -p playwright-automation/test-results  # Ensure directory exists
