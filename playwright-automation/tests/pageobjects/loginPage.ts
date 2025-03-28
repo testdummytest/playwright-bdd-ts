@@ -21,6 +21,5 @@ export class LoginPage {
         await pageFixture.page.locator(this.passwordInputFieldAuth0).fill(password);
         await expect(pageFixture.page.locator(this.loginVerifyButton)).toBeVisible({timeout : TIMEOUT});
         await pageFixture.page.locator(this.loginVerifyButton).click();
-        console.log("User login successfully!")
     }
 }
