@@ -43,7 +43,6 @@ jobs:
         working-directory: playwright-automation
       
       - name: 🔍 Check if Screenshots Exist
-        if: failure()
         run: |
           if ls playwright-automation/test-results/*.png 1> /dev/null 2>&1; then
             echo "✅ Screenshots captured!"
@@ -53,9 +52,9 @@ jobs:
         working-directory: playwright-automation
       
       - name: 📂 Upload Playwright Artifacts (Screenshots & Traces)
-        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-artifacts
           path: playwright-automation/test-results/
-          if-no-files-found: ignore  # Prevents error if folder is missing
+          if-no-files-found: ignore  # Prevents failure if no files exist
+
