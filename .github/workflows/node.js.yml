@@ -39,3 +39,10 @@ jobs:
       - name: 🛠 Run Smoke Tests with Cucumber & Playwright
         run: npm run test:smoke || echo "Tests failed, capturing artifacts..."
         working-directory: playwright-automation
+
+      - name: 📂 Upload Playwright Artifacts (Screenshots & Traces)
+        if: failure()  # Run this step only if the tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-artifacts
+          path: playwright-automation/test-results/  # Ensure this folder exists
