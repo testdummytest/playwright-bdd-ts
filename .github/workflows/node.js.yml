@@ -40,9 +40,19 @@ jobs:
         run: npm run test:smoke || echo "Tests failed, capturing artifacts..."
         working-directory: playwright-automation
 
+      - name: 🔍 Check if Screenshots Exist
+        if: failure()
+        run: |
+          if ls playwright-automation/test-results/*.png 1> /dev/null 2>&1; then
+            echo "✅ Screenshots captured!"
+          else
+            echo "⚠️ No screenshots found!"
+          fi
+        working-directory: playwright-automation
+      
       - name: 📂 Upload Playwright Artifacts (Screenshots & Traces)
-        if: failure()  # Run this step only if the tests fail
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-artifacts
-          path: playwright-automation/test-results/  # Ensure this folder exists
+          path: playwright-automation/test-results/
