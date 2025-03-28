@@ -37,9 +37,11 @@ jobs:
         working-directory: playwright-automation
 
       - name: 🛠 Run Smoke Tests with Cucumber & Playwright
-        run: npm run test:smoke || echo "Tests failed, capturing artifacts..."
+        run: |
+          mkdir -p playwright-automation/test-results  # Ensure directory exists
+          npm run test:smoke || echo "❌ Tests failed, checking for artifacts..."
         working-directory: playwright-automation
-
+      
       - name: 🔍 Check if Screenshots Exist
         if: failure()
         run: |
@@ -56,3 +58,4 @@ jobs:
         with:
           name: playwright-artifacts
           path: playwright-automation/test-results/
+          if-no-files-found: ignore  # Prevents error if folder is missing
