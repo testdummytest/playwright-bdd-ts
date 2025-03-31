@@ -2,6 +2,7 @@ import { BeforeAll, AfterAll, Before, After, Status } from "@cucumber/cucumber";
 import { Browser, BrowserContext, chromium } from "@playwright/test";
 import { pageFixture } from "./pageFixture";
 import { recordTestResult } from "../utils/emailSender"; // Store test results globally
+import * as fs from "fs";
 import * as path from "path";
 
 let browser: Browser;
