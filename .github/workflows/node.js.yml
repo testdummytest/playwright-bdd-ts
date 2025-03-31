@@ -36,23 +36,23 @@ jobs:
         run: npx playwright install --with-deps
         working-directory: playwright-automation
 
-      # ✅ Find exact testData.json filename (case-sensitive)
-      - name: 📝 Find testData.json in Repository
+      # ✅ Find exact testdata.json filename (case-sensitive)
+      - name: 📝 Find testdata.json in Repository
         run: |
           echo "Current Working Directory: $(pwd)"
-          find playwright-automation -type f | grep -i "testdata.json" || echo "⚠️ testData.json NOT FOUND!"
+          find playwright-automation -type f | grep -i "testdata.json" || echo "⚠️ testdata.json NOT FOUND!"
         working-directory: playwright-automation
 
-      # ✅ Check if testData.json is ignored by .gitignore
-      - name: 🔍 Check if testData.json is ignored
+      # ✅ Check if testdata.json is ignored by .gitignore
+      - name: 🔍 Check if testdata.json is ignored
         run: |
-          git check-ignore -v playwright-automation/TestData/testdata.json || echo "✅ testData.json is NOT ignored!"
+          git check-ignore -v playwright-automation/TestData/testdata.json || echo "✅ testdata.json is NOT ignored!"
         working-directory: playwright-automation
 
-      # ✅ Force add testData.json if missing
-      - name: 📂 Ensure testData.json is Tracked in Git
+      # ✅ Force add testdata.json if missing
+      - name: 📂 Ensure testdata.json is Tracked in Git
         run: |
-          git ls-files --stage | grep testdata.json || echo "⚠️ testData.json NOT tracked by Git!"
+          git ls-files --stage | grep testdata.json || echo "⚠️ testdata.json NOT tracked by Git!"
         working-directory: playwright-automation
 
       - name: 🛠 Run Smoke Tests with Cucumber & Playwright
