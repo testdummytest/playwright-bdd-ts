@@ -4,7 +4,7 @@ import * as path from "path";
 // Dynamically resolve path based on environment
 const TEST_DATA_DIR = fs.existsSync(path.resolve(process.cwd(), "TestData"))
     ? path.resolve(process.cwd(), "TestData")
-    : path.resolve(process.cwd(), "playwright-automation/TestData");
+    : path.resolve(process.cwd(), "playwright-automation/utils/TestData");
 
 const TEST_DATA_PATH = path.join(TEST_DATA_DIR, "testData.json");
 
