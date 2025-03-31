@@ -19,6 +19,10 @@ jobs:
         with:
           fetch-depth: 0  # Ensure all files are checked out
 
+      - name: 🔍 Debug Repository Files
+        run: ls -R
+        working-directory: playwright-automation
+        
       - name: 🔧 Set Up Node.js
         uses: actions/setup-node@v4
         with:
