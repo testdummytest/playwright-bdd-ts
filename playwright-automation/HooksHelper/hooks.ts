@@ -25,11 +25,11 @@ Before(async () => {
   pageFixture.page = page;
 
   // 🔍 Debug step: Check if testData.json exists before starting the test
-  const testDataPath = path.resolve(__dirname, "../TestData/testData.json");
+  const testDataPath = path.resolve(__dirname, "../TestData/testdata.json");
   if (fs.existsSync(testDataPath)) {
-    console.log(`✅ testData.json found at: ${testDataPath}`);
+    console.log(`✅ testdata.json found at: ${testDataPath}`);
   } else {
-    console.error(`❌ testData.json NOT FOUND at: ${testDataPath}`);
+    console.error(`❌ testdata.json NOT FOUND at: ${testDataPath}`);
   }
 });
 
