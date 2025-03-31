@@ -9,7 +9,7 @@ let context: BrowserContext;
 
 BeforeAll(async () => {
   console.log("Launching browser before tests...");
-  browser = await chromium.launch({ headless: false });
+  browser = await chromium.launch({ headless: true });
 });
 
 AfterAll(async () => {
