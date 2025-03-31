@@ -22,6 +22,14 @@ Before(async () => {
   context = await browser.newContext();
   const page = await context.newPage();
   pageFixture.page = page;
+
+  // 🔍 Debug step: Check if testData.json exists before starting the test
+  const testDataPath = path.resolve(__dirname, "../TestData/testData.json");
+  if (fs.existsSync(testDataPath)) {
+    console.log(`✅ testData.json found at: ${testDataPath}`);
+  } else {
+    console.error(`❌ testData.json NOT FOUND at: ${testDataPath}`);
+  }
 });
 
 After(async ({ pickle, result }) => {
