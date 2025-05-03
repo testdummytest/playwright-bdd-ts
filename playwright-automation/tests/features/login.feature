@@ -22,7 +22,6 @@ Feature: Login
     Then user verify hamburger menu
     
 
-  @testingpurposeonly
+  @hellotesting
   Scenario: user logs in to saucelab with valid credentials and verify different pages
-    When user login with "testCredential:username" and "testCredential:password" for register user
-    
+    Then user verify hamburger menu
